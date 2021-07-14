@@ -18,7 +18,7 @@ with lib;
       RestartSec = 0;
       ExecStart = pkgs.writeShellScript "${name}.sh" ''
         set -euo pipefail
-        PATH=${makeBinPath (with pkgs; [ coreutils inotify-tools ])}
+        PATH=${makeBinPath (with pkgs; [ coreutils inotify-tools findutils ])}
         bin_dir=~/.vscode-server/bin
         [[ -e $bin_dir ]] &&
         find "$bin_dir" -mindepth 2 -maxdepth 2 -name node -type f -exec ln -sfT ${pkgs.nodejs-14_x}/bin/node {} \; ||
